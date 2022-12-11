@@ -70,12 +70,21 @@ public class FetchPersonImpl implements FetchPerson{
 
         var revision = res.getQuery().getPages().get(0).getRevisions().get(0).getContent().getDescription();
 
-        log.info("Person Revision: {}", revision);
-        String result = StringUtils.substringBetween(revision, "{{", "}}");
+        if(StringUtils.containsIgnoreCase(revision,"short description")){
+            log.info("Person Revision: {}", revision);
+            String result = StringUtils.substringBetween(revision, "{{", "}}");
 
-        var description = StringUtils.substringAfter(result, "|");
-        log.info("DESCRIPTION : {}",description);
-        return description;
+            log.info("RESULT : {}",result);
+
+            var description = StringUtils.substringAfter(result, "|");
+            log.info("DESCRIPTION : {}",description);
+            log.info("Check for short description: {}",StringUtils.contains(revision,"short description"));
+
+            return description;
+
+        }
+            return "Person record not found";
+
     }
 
     private String formatUserName(String username) {

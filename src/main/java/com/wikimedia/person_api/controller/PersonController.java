@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("api/person/")
+@RequestMapping("api/person")
 @Slf4j
 
 public class PersonController {
