@@ -1,6 +1,5 @@
 package com.wikimedia.person_api.controller;
 
-import com.wikimedia.person_api.domain.GenericResponse;
 import com.wikimedia.person_api.service.PersonService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -26,8 +25,12 @@ public class PersonController {
 
 
     @GetMapping("description")
-    ResponseEntity<GenericResponse> getPersonDescription(@RequestParam(name = "Username", required = true) String username) throws IOException, InterruptedException {
-        return personService.getPersonDescription(username);
+    ResponseEntity<String> getPersonDescription(@RequestParam(name = "Username", required = true) String username) throws IOException, InterruptedException {
+        var description =  personService.getPersonDescription(username);
+        if( description.isBlank() ){
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        }
+        return ResponseEntity.ok().body(description);
     }
 }
 

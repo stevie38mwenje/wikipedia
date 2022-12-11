@@ -6,5 +6,5 @@ import org.springframework.http.ResponseEntity;
 import java.io.IOException;
 
 public interface PersonService {
-    ResponseEntity<GenericResponse> getPersonDescription(String username) throws IOException, InterruptedException;
+String getPersonDescription(String username) throws IOException, InterruptedException;
 }
