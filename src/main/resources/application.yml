@@ -1,0 +1,6 @@
+server:
+  port: 8084
+
+wikipedia:
+  server:
+    url: https://en.wikipedia.org/w/api.php?
